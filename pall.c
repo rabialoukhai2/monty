@@ -7,12 +7,11 @@ stack_t *current = *stack;
 /* Check if the stack is empty */
 if (current == NULL)
 {
-return;  // Nothing to print
+return;
 }
 
 /* Traverse the stack and print all values */
-while (current != NULL) 
-{
+while (current != NULL){
 printf("%d\n", current->n);
 current = current->next;
 }
