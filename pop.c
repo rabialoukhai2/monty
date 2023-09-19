@@ -9,7 +9,7 @@
  */
 void pop(stack_t **stack, unsigned int line_number)
 {
-	stack_t * temp;
+	stack_t *temp;
 
 	/*Check if the stack is empty */
 	if (*stack == NULL)
