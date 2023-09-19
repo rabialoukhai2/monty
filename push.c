@@ -10,7 +10,7 @@
  */
 void push(stack_t **stack, unsigned int line_number, int value)
 {
-	stack_t * new_node;
+	stack_t *new_node;
 
 	if (!isdigit(value) && (value[0] != '-' && !isdigit(value[1])))
 	{
