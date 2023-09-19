@@ -11,7 +11,7 @@ return;
 }
 
 /* Traverse the stack and print all values */
-while(current != NULL)
+while (current != NULL)
 {
 printf("%d\n", current->n);
 current = current->next;
