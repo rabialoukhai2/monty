@@ -3,79 +3,44 @@
 #include <string.h>
 #include "monty.h"
 
-/**
- *error_usage - Prints the usage message and exits.
- */
-void error_usage(void)
-{
-	fprintf(stderr, "USAGE: monty file\n");
-	exit(EXIT_FAILURE);
-}
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 /**
- *file_error - Prints a file error message and exits.
- *@argv: The name of the file causing the error.
- */
-void file_error(char *argv)
-{
-	fprintf(stderr, "Error: Can't open file %s\n", argv);
-	exit(EXIT_FAILURE);
-}
-
-int status = 0;
-
-/**
- *main - Entry point of the Monty interpreter.
- *@argc: The number of command-line arguments.
- *@argv: An array of command-line argument strings.
+ *main - Entry point for the Monty interpreter
  *
- *Return: 0 on success, EXIT_FAILURE on failure.
+ *@argc: Number of command-line arguments
+ *@argv: Array of pointers to command-line argument strings
+ *
+ *Return: EXIT_SUCCESS on success, EXIT_FAILURE on error
  */
 int main(int argc, char **argv)
 {
-	FILE * file;
-	size_t buf_len = 0;
-	char *buffer = NULL;
-	char *str = NULL;
-	stack_t *stack = NULL;
-	unsigned int line_cnt = 1;
+	/**
+	 *script_fd - File pointer for the Monty script
+	 */
+	FILE *script_fd = NULL;
 
-	global.data_struct = 1;
+	/**
+	 *exit_code - Exit code to be returned
+	 */
+	int exit_code = EXIT_SUCCESS;
 
+	/*Check the number of command-line arguments */
 	if (argc != 2)
-		error_usage();
+		return (msg_err());
 
-	file = fopen(argv[1], "r");
+	/*Attempt to open the script file */
+	script_fd = fopen(argv[1], "r");
+	if (script_fd == NULL)
+		return (file_open_err(argv[1]));
 
-	if (!file)
-		file_error(argv[1]);
+	/*Run the Monty interpreter */
+	exit_code = monty_runs(script_fd);
 
-	while (getline(&buffer, &buf_len, file) != -1)
-	{
-		if (status)
-			break;
+	/*Close the script file */
+	fclose(script_fd);
 
-		if (*buffer == '\n')
-		{
-			line_cnt++;
-			continue;
-		}
-
-		str = strtok(buffer, " \t\n");
-
-		if (!str || *str == '#')
-		{
-			line_cnt++;
-			continue;
-		}
-
-		global.argument = strtok(NULL, " \t\n");
-		opcode(&stack, str, line_cnt);
-		line_cnt++;
-	}
-
-	free(buffer);
-	free_stack(stack);
-	fclose(file);
-	exit(status);
+	return (exit_code);
 }
