@@ -80,7 +80,7 @@ void (*get_op_func(char *opcode))(stack_t **, unsigned int)
 		},
 		{ "pall", pall
 		},
-		{ "pint", pint
+		/*{ "pint", pint
 		},
 		{ "pop", pop
 		},
@@ -109,7 +109,7 @@ void (*get_op_func(char *opcode))(stack_t **, unsigned int)
 		{ "stack", stack
 		},
 		{ "queue", queue
-		},
+		},*/
 		{
 			NULL, NULL
 		}
