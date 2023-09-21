@@ -54,6 +54,7 @@ int monty_runs(FILE *script_fd);
 /*Opcode fun */
 void push(stack_t **stack, unsigned int value_ln);
 void pall(stack_t **stack, unsigned int value_ln);
+/*
 void pint(stack_t **stack, unsigned int value_ln);
 void pop(stack_t **stack, unsigned int value_ln);
 void swap(stack_t **stack, unsigned int value_ln);
@@ -69,6 +70,7 @@ void rotl(stack_t **stack, unsigned int value_ln);
 void rotr(stack_t **stack, unsigned int value_ln);
 void stack(stack_t **stack, unsigned int value_ln);
 void queue(stack_t **stack, unsigned int value_ln);
+*/
 
 /*utils */
 char **stow(char *str, char *delims);
