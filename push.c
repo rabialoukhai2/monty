@@ -33,7 +33,7 @@ void push(stack_t **stack, unsigned int value_ln)
 	{
 		if (op_toks[1][i] == '-' && i == 0)
 			continue;
-		if (op_toks[1][i]<'0' || op_toks[1][i] > '9')
+		if (op_toks[1][i] < '0' || op_toks[1][i] > '9')
 		{
 			set_optok_err(no_int_err(value_ln));
 			return;
