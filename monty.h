@@ -39,7 +39,7 @@ stack_t;
 typedef struct instruction_s
 {
 	char *opcode;
-	void(*f)(stack_t **stack, unsigned int value_ln);
+	void (*f)(stack_t **stack, unsigned int value_ln);
 }
 
 instruction_t;
