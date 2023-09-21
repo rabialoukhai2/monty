@@ -6,6 +6,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+char **op_toks = NULL;
 /**
  *main - Entry point for the Monty interpreter
  *@argc: Number of command-line arguments
